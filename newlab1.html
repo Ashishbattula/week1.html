@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>week1</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* TOP FRAME */
+        #top {
+            height: 20vh;
+            background-color: lightblue;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* MAIN SECTION */
+        #main {
+            display: flex;
+            height: 80vh;
+        }
+
+        /* LEFT FRAME */
+        #left {
+            width: 20%;
+            background-color: #f0f0f0;
+            padding: 15px;
+        }
+
+        /* RIGHT FRAME */
+        #right {
+            width: 80%;
+            padding: 15px;
+            overflow-y: auto;
+            border-left: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+            cursor: pointer;
+        }
+
+        .nav a {
+            margin: 0 5px;
+        }
+
+        .dept a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* TABLE STYLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        img {
+            width: 80px;
+            height: 100px;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- TOP FRAME -->
+<div id="top">
+    <h1 style="color:green">RVR&JC College of Engineering</h1>
+    <h3 style="color:#F52742">Online Book Store</h3>
+    <div class="nav">
+        <a onclick="loadPage('home')">Home</a> |
+        <a onclick="loadPage('login')">Login</a> |
+        <a onclick="loadPage('register')">Register</a> |
+        <a onclick="loadPage('catalogue')">Catalogue</a> |
+        <a onclick="loadPage('cart')">Cart</a>
+    </div>
+</div>
+
+<!-- LEFT & RIGHT FRAMES -->
+<div id="main">
+
+    <!-- LEFT FRAME -->
+    <div id="left" class="dept">
+        <h3>Departments</h3>
+        <a onclick="loadPage('csbs')">CSBS</a>
+        <a onclick="loadPage('cse')">CSE</a>
+        <a onclick="loadPage('ece')">ECE</a>
+        <a onclick="loadPage('eee')">EEE</a>
+    </div>
+
+    <!-- RIGHT FRAME -->
+    <div id="right">
+        <h2>Welcome to Online Book Store</h2>
+        <p>
+            This website provides textbooks for various engineering departments.
+            Select a department or catalogue to view books.
+        </p>
+    </div>
+
+</div>
+
+<script>
+function loadPage(page) {
+    let right = document.getElementById("right");
+
+    if (page === "home") {
+        right.innerHTML = `
+        <h2>Welcome to Online Book Store</h2>
+        <p>This website provides textbooks for engineering students.</p>`;
+    }
+
+    else if (page === "login") {
+        right.innerHTML = `
+        <h2>Login</h2>
+        Username: <input type="text"><br><br>
+        Password: <input type="password"><br><br>
+        <input type="submit" value="Login">`;
+    }
+
+    else if (page === "register") {
+        right.innerHTML = `
+        <h2>Registration</h2>
+        Name: <input type="text"><br><br>
+        Email: <input type="email"><br><br>
+        Password: <input type="password"><br><br>
+        <input type="submit" value="Register">`;
+    }
+
+    else if (page === "catalogue") {
+        right.innerHTML = `
+        <h2 align="center">Book Catalogue</h2>
+
+        <table>
+            <tr>
+                <th>Cover Page</th>
+                <th>Book Details</th>
+                <th>Price</th>
+                <th>Add to Cart</th>
+            </tr>
+
+            <tr>
+                <td><img src="https://via.placeholder.com/80x100"></td>
+                <td>
+                    <b>Data Structures</b><br>
+                    Author: Reema Thareja<br>
+                    Publisher: Oxford
+                </td>
+                <td>₹450</td>
+                <td><button>Add to Cart</button></td>
+            </tr>
+
+            <tr>
+                <td><img src="https://via.placeholder.com/80x100"></td>
+                <td>
+                    <b>Operating Systems</b><br>
+                    Author: Silberschatz<br>
+                    Publisher: Wiley
+                </td>
+                <td>₹550</td>
+                <td><button>Add to Cart</button></td>
+            </tr>
+
+            <tr>
+                <td><img src="https://via.placeholder.com/80x100"></td>
+                <td>
+                    <b>Computer Networks</b><br>
+                    Author: Andrew S. Tanenbaum<br>
+                    Publisher: Pearson
+                </td>
+                <td>₹600</td>
+                <td><button>Add to Cart</button></td>
+            </tr>
+
+            <tr>
+                <td><img src="https://via.placeholder.com/80x100"></td>
+                <td>
+                    <b>Python Programming</b><br>
+                    Author: Guido van Rossum<br>
+                    Publisher: Packt
+                </td>
+                <td>₹500</td>
+                <td><button>Add to Cart</button></td>
+            </tr>
+        </table>`;
+    }
+
+    else if (page === "cart") {
+        right.innerHTML = `
+        <h2>Shopping Cart</h2>
+        <p>Your cart is empty.</p>`;
+    }
+
+    /* ===== DEPARTMENT BOOK LISTS ===== */
+    else if (page === "csbs") {
+        right.innerHTML = `
+        <h2>CSBS Books</h2>
+        <ul>
+            <li>Business Analytics</li>
+            <li>Python Programming</li>
+            <li>Statistics</li>
+        </ul>`;
+    }
+    else if (page === "cse") {
+        right.innerHTML = `
+        <h2>CSE Books</h2>
+        <ul>
+            <li>Data Structures</li>
+            <li>Operating Systems</li>
+            <li>Computer Networks</li>
+        </ul>`;
+    }
+    else if (page === "ece") {
+        right.innerHTML = `
+        <h2>ECE Books</h2>
+        <ul>
+            <li>Digital Electronics</li>
+            <li>Signals & Systems</li>
+        </ul>`;
+    }
+    else if (page === "eee") {
+        right.innerHTML = `
+        <h2>EEE Books</h2>
+        <ul>
+            <li>Electrical Machines</li>
+            <li>Power Systems</li>
+        </ul>`;
+    }
+}
+</script>
+
+</body>
+</html>
