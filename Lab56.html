@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RVR & JC College - Validation & CSS Demo</title>
+
+<style>
+
+/* ===== Page Background ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://picsum.photos/1200/800");
+    background-repeat: repeat;   /* change to no-repeat / repeat-x / repeat-y */
+    margin: 0;
+}
+
+/* ===== Header Style ===== */
+header {
+    background: #003366;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+}
+
+/* ===== Different Fonts ===== */
+h2 {
+    font-family: Georgia;
+    color: darkblue;
+}
+
+.special-text {
+    font-family: Courier New;
+    font-style: italic;
+    color: darkgreen;
+}
+
+/* ===== Link Styles ===== */
+a:link { text-decoration: none; color: blue; }
+a:visited { text-decoration: none; color: purple; }
+a:active { text-decoration: none; }
+a:hover { text-decoration: underline; color: red; }
+
+/* ===== Form Style ===== */
+form {
+    width: 400px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px gray;
+}
+
+input {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+/* ===== Custom Cursor ===== */
+button {
+    cursor: pointer;
+}
+
+.custom-cursor {
+    cursor: crosshair;
+}
+
+/* ===== Layers Demo ===== */
+.layer1 {
+    position: relative;
+    font-size: 50px;
+    z-index: 2;
+    color: black;
+}
+
+.layer2 {
+    position: relative;
+    top: -50px;
+    left: 10px;
+    font-size: 80px;
+    color: red;
+    z-index: 1;
+}
+
+.layer1-top {
+    position: relative;
+    font-size: 50px;
+    z-index: 3;
+    color: black;
+}
+
+.layer2-bottom {
+    position: relative;
+    top: -50px;
+    left: 10px;
+    font-size: 80px;
+    color: red;
+    z-index: 1;
+}
+
+</style>
+
+<script>
+
+/* ===== Registration Validation ===== */
+function validateRegistration() {
+
+    let name = document.regForm.name.value;
+    let password = document.regForm.password.value;
+    let email = document.regForm.email.value;
+    let phone = document.regForm.phone.value;
+
+    let namePattern = /^[A-Za-z]{6,}$/;
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+    let phonePattern = /^[0-9]{10}$/;
+
+    if (!namePattern.test(name)) {
+        alert("Name must contain only alphabets and minimum 6 characters");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Enter valid email (name@domain.com)");
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert("Phone number must contain exactly 10 digits");
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return false;
+}
+
+/* ===== Login Validation ===== */
+function validateLogin() {
+
+    let username = document.loginForm.username.value;
+    let password = document.loginForm.password.value;
+
+    if (username.length < 6) {
+        alert("Username must be at least 6 characters");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
+
+    alert("Login Successful!");
+    return false;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+R.V.R. & J.C. COLLEGE OF ENGINEERING (Autonomous)<br>
+Chandramoulipuram :: Chowdavaram :: Guntur-522019
+</header>
+
+<h2 align="center">Registration Page</h2>
+
+<form name="regForm" onsubmit="return validateRegistration()">
+
+Name:
+<input type="text" name="name">
+
+Password:
+<input type="password" name="password">
+
+E-mail:
+<input type="text" name="email">
+
+Phone Number:
+<input type="text" name="phone">
+
+<button type="submit">Register</button>
+
+</form>
+
+<h2 align="center">Login Page</h2>
+
+<form name="loginForm" onsubmit="return validateLogin()">
+
+Username:
+<input type="text" name="username">
+
+Password:
+<input type="password" name="password">
+
+<button type="submit">Login</button>
+
+</form>
+
+<h2 align="center">CSS Features Demo</h2>
+
+<p class="special-text" align="center">
+This text uses different font style (Courier New, italic, green).
+</p>
+
+<p align="center">
+<a href="#">Sample Link</a>
+</p>
+
+<h2 align="center">Layer Demo (Z-Index)</h2>
+
+<div align="center">
+    <div class="layer1">LAYER1 ON TOP</div>
+    <div class="layer2">LAYER2</div>
+</div>
+
+<br><br>
+
+<div align="center">
+    <div class="layer1-top">LAYER1</div>
+    <div class="layer2-bottom">LAYER2 ON TOP</div>
+</div>
+
+<br><br>
+
+<h2 align="center">Custom Cursor Area</h2>
+
+<p class="custom-cursor" align="center">
+Hover here to see crosshair cursor effect.
+</p>
+
+</body>
+</html>

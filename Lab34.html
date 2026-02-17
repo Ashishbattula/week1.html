@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Book Store</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        nav {
+            background: #34495e;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 20%;
+            padding: 15px;
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .sidebar p {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background: #f2f2f2;
+        }
+
+        form {
+            width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .radio-group, .checkbox-group {
+            width: auto;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        .buttons input {
+            width: 120px;
+            margin: 5px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+
+    <script>
+        function showPage(pageId) {
+            document.getElementById("cartPage").classList.remove("active");
+            document.getElementById("regPage").classList.remove("active");
+            document.getElementById(pageId).classList.add("active");
+        }
+
+        function validateForm() {
+            let name = document.forms["regForm"]["name"].value;
+            let password = document.forms["regForm"]["password"].value;
+            let email = document.forms["regForm"]["email"].value;
+            let phone = document.forms["regForm"]["phone"].value;
+
+            if (name == "" || password == "" || email == "" || phone == "") {
+                alert("All fields must be filled out");
+                return false;
+            }
+
+            if (phone.length != 10 || isNaN(phone)) {
+                alert("Enter valid 10-digit phone number");
+                return false;
+            }
+
+            alert("Registration Successful!");
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+
+<header>
+    Logo WebSiteName
+</header>
+
+<nav>
+    <a onclick="showPage('cartPage')">Cart</a>
+    <a onclick="showPage('regPage')">Registration</a>
+</nav>
+
+<div class="container">
+
+    <div class="sidebar">
+        <p>CS</p>
+        <p>BSE</p>
+        <p>ECE</p>
+        <p>EEE</p>
+        <p>CIVIL</p>
+        <p>CSE</p>
+    </div>
+
+    <div class="content">
+
+        <!-- CART PAGE -->
+        <div id="cartPage" class="page active">
+            <h2>Cart Details</h2>
+
+            <table>
+                <tr>
+                    <th>Book Name</th>
+                    <th>Price ($)</th>
+                    <th>Quantity</th>
+                    <th>Amount ($)</th>
+                </tr>
+
+                <tr>
+                    <td>Java 2</td>
+                    <td>35.5</td>
+                    <td>2</td>
+                    <td>70</td>
+                </tr>
+
+                <tr>
+                    <td>XML Bible</td>
+                    <td>40.5</td>
+                    <td>1</td>
+                    <td>40.5</td>
+                </tr>
+
+                <tr class="total-row">
+                    <td colspan="3">Total Amount</td>
+                    <td>130.5</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- REGISTRATION PAGE -->
+        <div id="regPage" class="page">
+            <h2>Registration Form</h2>
+
+            <form name="regForm" onsubmit="return validateForm()">
+
+                <label>Name:</label>
+                <input type="text" name="name">
+
+                <label>Password:</label>
+                <input type="password" name="password">
+
+                <label>E-mail ID:</label>
+                <input type="email" name="email">
+
+                <label>Phone Number:</label>
+                <input type="text" name="phone">
+
+                <label>Sex:</label>
+                <input type="radio" name="sex" value="Male" class="radio-group"> Male
+                <input type="radio" name="sex" value="Female" class="radio-group"> Female
+
+                <label>Date of Birth:</label>
+
+                <select name="day">
+                    <option value="">Day</option>
+                    <script>
+                        for(let i=1; i<=31; i++){
+                            document.write("<option>"+i+"</option>");
+                        }
+                    </script>
+                </select>
+
+                <select name="month">
+                    <option value="">Month</option>
+                    <script>
+                        for(let i=1; i<=12; i++){
+                            document.write("<option>"+i+"</option>");
+                        }
+                    </script>
+                </select>
+
+                <select name="year">
+                    <option value="">Year</option>
+                    <script>
+                        for(let i=1980; i<=2025; i++){
+                            document.write("<option>"+i+"</option>");
+                        }
+                    </script>
+                </select>
+
+                <label>Languages Known:</label>
+                <input type="checkbox" value="English" class="checkbox-group"> English
+                <input type="checkbox" value="Telugu" class="checkbox-group"> Telugu
+                <input type="checkbox" value="Hindi" class="checkbox-group"> Hindi
+                <input type="checkbox" value="Tamil" class="checkbox-group"> Tamil
+
+                <label>Address:</label>
+                <textarea rows="4"></textarea>
+
+                <div class="buttons">
+                    <input type="submit" value="Register">
+                    <input type="reset" value="Clear">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
